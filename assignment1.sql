@@ -18,6 +18,6 @@ create table Subjects(
 	ID int primary key
 );
 create table StudentSubjects(
-	Code varchar(20),
-	ID int
+	StudentCode varchar(20) foreign key references Students(Code),
+	SubjectID int foreign key references Subjects(ID)
 );
