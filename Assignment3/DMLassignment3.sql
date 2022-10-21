@@ -61,3 +61,50 @@ values(N'DK001',N'NCC001',N'DV01',N'Hiace',N'MP01','2015-11-20','2016-11-20',4),
 (N'DK024',N'NCC003',N'DV03',N'Forte',N'MP04','2017-12-23','2019-11-30',8),
 (N'DK025',N'NCC003',N'DV03',N'Hiace',N'MP02','2016-08-24','2017-10-25',1);
 select * from DANGKYCUNGCAP;
+
+-- cau 3
+select * from DONGXE where SoChoNGoi > 5;
+
+-- cau 4
+select * from NHACUNGCAP where MaNhaCC in
+(select MaNhaCC from DANGKYCUNGCAP where DongXe in
+(select DongXe from DONGXE where HangXe like 'Toyota') and MaMP in
+(select MaMP from MUCPHI where DonGia = 15))
+or DongXe in
+(select MaNhaCC from DANGKYCUNGCAP where DongXe in
+(select DongXe from DONGXE where HangXe like 'KIA') and MaMP in
+(select MaMP from MUCPHI where DonGia = 20));
+-- cach 2
+select distinct b.* from DANGKYCUNGCAP a
+inner join NHACUNGCAP b on a.MaNhaCC = b.MaNhaCC
+inner join MUCPHI c on a.MaMP = c.MaMP
+inner join DONGXE d on a.DongXe = d.DongXe
+where (d.HangXe like 'Toyota' and c.DonGia = 15) or
+(d.HangXe like 'KIA' and c.DonGia = 20);
+
+-- cau 5
+select * from NHACUNGCAP order by TenNhaCC asc, MaSoThue desc;
+
+-- cau 6
+select MaNhaCC, count (*) as soluong from DANGKYCUNGCAP where NgayBatDauCungCap >= '2015-11-20' group by MaNhaCC;
+
+-- cau 7
+select distinct HangXe from DONGXE;
+
+-- cau 8
+select distinct a.MaDKCC,a.MaNhaCC,b.TenNhaCC,b.DiaChi,b.MaSoThue,
+e.TenLoaiDV,c.DonGia,d.HangXe,a.NgayBatDauCungCap,a.NgayKetThucCungCap
+from DANGKYCUNGCAP a
+right join NHACUNGCAP b on a.MaNhaCC = b.MaNhaCC
+left join MUCPHI c on a.MaMP = c.MaMP
+left join DONGXE d on a.DongXe = d.DongXe
+left join LOAIDICHVU e on a.MaLoaiDV = e.MaLoaiDV;
+
+-- cau 9
+select * from NHACUNGCAP where MaNhaCC in
+(select MaNhaCC from DANGKYCUNGCAP where DongXe in
+('Hiace','Cerato'));
+
+-- cau 10
+select * from NHACUNGCAP where MaNhaCC not in
+(select MaNhaCC from DANGKYCUNGCAP);
