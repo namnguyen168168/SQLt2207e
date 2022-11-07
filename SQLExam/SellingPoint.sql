@@ -13,16 +13,17 @@ create table Parts(
 	Warranty int default 1,
 	Photo nvarchar(200) default 'photo/nophoto.png'
 );
-
+drop table Parts;
+drop table Categories;
 --
 insert into Categories(CateID,CateName,Description)
-values(N'INTELA',N'CPU',N'With the 11th generation Intel processors, which now offer a clock frequency of up to 4.8 GHz 2 , your gaming PC switches on the turbo straight away. Up to 8 cores and 16 threads master every challenge with ease. Go straight to the max and see for yourself what this powerhouse has to offer.'),
-(N'NVDGPU',N'GPU',N'NVIDIA GeForce RTX 40 Series GPUs are beyond fast for gamers and creators. They are powered by the ultra-efficient NVIDIA Ada Lovelace architecture which delivers a quantum leap in both performance and AI-powered graphics. Experience lifelike virtual worlds with ray tracing and ultra-high FPS gaming with the lowest latency. Discover revolutionary new ways to create and unprecedented workflow acceleration.'),
-(N'KINRAM',N'RAM',N'Kingston makes it quick and easy to select compatible RAM memory for your Desktop PC, Laptop, or Server. Search by OEM brand system, OEM memory part number, or memory specifications. All Kingston memory is backed by 100% testing, a lifetime warranty and over 30 years of design and manufacturing expertise.');
+values(N'INTELA',N'CPU',N'The 11th generation Intel processors'),
+(N'NVDGPU',N'GPU',N'NVIDIA GeForce RTX 40 Series GPUs '),
+(N'KINRAM',N'RAM',N'Kingston makes it quick and easy to select compatible RAM memory for your Desktop PC, Laptop, or Server.');
 insert into Parts(PartName,CateID,Description,Price,Quantity,Warranty,Photo)
-values(N'Intel I7',N'INTELA',N'With the 11th generation Intel processors, which now offer a clock frequency of up to 4.8 GHz 2 , your gaming PC switches on the turbo straight away. Up to 8 cores and 16 threads master every challenge with ease. Go straight to the max and see for yourself what this powerhouse has to offer.','500',10,3,N'photo/nophoto.png'),
-(N'RTX 4090',N'NVDGPU',N'NVIDIA GeForce RTX 40 Series GPUs are beyond fast for gamers and creators. They are powered by the ultra-efficient NVIDIA Ada Lovelace architecture which delivers a quantum leap in both performance and AI-powered graphics. Experience lifelike virtual worlds with ray tracing and ultra-high FPS gaming with the lowest latency. Discover revolutionary new ways to create and unprecedented workflow acceleration.','1500',10,5,N'photo/nophoto.png'),
-(N'Kingston DDR4 16G',N'KINRAM',N'Kingston makes it quick and easy to select compatible RAM memory for your Desktop PC, Laptop, or Server. Search by OEM brand system, OEM memory part number, or memory specifications. All Kingston memory is backed by 100% testing, a lifetime warranty and over 30 years of design and manufacturing expertise.','50',100,2,N'photo/nophoto.png');
+values(N'Intel I7',N'INTELA',N'The 11th generation Intel processors','500',10,3,N'photo/nophoto.png'),
+(N'RTX 4090',N'NVDGPU',N'NVIDIA GeForce RTX 40 Series GPUs are beyond fast for gamers and creators.','1500',10,5,N'photo/nophoto.png'),
+(N'Kingston DDR4 16G',N'KINRAM',N'Kingston makes it quick and easy to select compatible RAM memory for your Desktop PC, Laptop, or Server','50',100,2,N'photo/nophoto.png');
 
 --
 select * from Parts where Price > 100;
